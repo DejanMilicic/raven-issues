@@ -12,22 +12,11 @@ namespace RavenTests
 
             using var session = store.OpenSession();
 
-            session.Store(new User
-            {
-                FirstName = "John",
-                LastName = "Doe",
-                CompanyId = ""
-            });
-
-            session.SaveChanges();
-
-            string id1 = null;
-            var user1 = session.Load<User>(id1);
+            string nullId = null;
+            var user1 = session.Load<User>(nullId);
             Assert.Null(user1);
 
-            string id2 = "";
-
-            var user2 = session.Load<User>(id2);
+            var user2 = session.Load<User>("");
             Assert.Null(user2);
         }
     }
